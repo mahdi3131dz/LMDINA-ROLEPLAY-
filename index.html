@@ -1,59 +1,150 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEW VILLE Hub</title>
+  <title>NEW VILLE | Hub & Rules</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #FF9900;
+      --secondary: #FF6600;
+      --dark: #121212;
+      --card-bg: #1e1e1e;
+      --text: #ffffff;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #FF9900, #FF9933);
-      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--dark);
+      background-image: radial-gradient(circle at top right, #332200, transparent),
+                        radial-gradient(circle at bottom left, #221100, transparent);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    /* Header Section */
+    header {
       text-align: center;
-      padding: 50px;
+      margin-bottom: 50px;
     }
 
     h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      color: #ffd700;
-      text-shadow: 2px 2px #000;
+      font-size: 4em;
+      font-weight: 900;
+      margin: 0;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
-    p {
+    .subtitle {
       font-size: 1.2em;
-      margin-bottom: 40px;
+      color: #bbb;
+      margin-top: 10px;
+    }
+
+    /* Links Buttons */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 60px;
     }
 
     .button {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 25px;
-      font-size: 1.1em;
-      color: #fff;
-      background-color: #Ff9933;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background: var(--card-bg);
+      border: 2px solid #333;
+      border-radius: 12px;
+      color: var(--text);
       text-decoration: none;
-      transition: 0.3s;
+      font-weight: bold;
+      transition: all 0.3s ease;
     }
 
     .button:hover {
-      background-color: #FF9933;
-      color: #000;
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255, 153, 0, 0.2);
+      background: #252525;
+    }
+
+    /* Rules Section */
+    .rules-section {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: right;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      border-right: 5px solid var(--primary);
+    }
+
+    .rules-section h2 {
+      color: var(--primary);
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .rule-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+    }
+
+    .rule-item strong {
+      color: var(--primary);
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5em; }
+      .container { padding: 15px; }
     }
   </style>
 </head>
 <body>
-  <h1>NEW CITY</h1>
-  <p>الموقع الرسمي ل سيرفر!<br>Accédez facilement à tout le contenu :</p>
 
-  <a class="button" href="https://www.youtube.com/" target="_blank">YouTube</a>
-  <a class="button" href="https://www.sa-mp.com/" target="_blank">SAMP SOON</a>
-  <a class="button" href="https://www.gta-mods.com/" target="_blank">Mods SAM P</a>
-  <a class="button" href="https://discord.gg/YPpQXVT3sU" target="_blank">Serveur NEW VILLE</a>
+  <div class="container">
+    <header>
+      <h1>NEW VILLE</h1>
+      <p class="subtitle">الموقع الرسمي لسيرفر نيوفيل - تجربة واقعية لا تُنسى</p>
+    </header>
 
-  <p style="margin-top:50px; font-size:0.9em; color:#ccc;">© 2026 NEW VILLE</p>
-</body>
-</html>
+    <div class="links-grid">
+      <a class="button" href="https://discord.gg/YPpQXVT3sU" target="_blank">Discord Server</a>
+      <a class="button" href="https://www.youtube.com/" target="_blank">YouTube Channel</a>
+      <a class="button" href="#" style="opacity: 0.6; cursor: not-allowed;">SAMP SOON</a>
+      <a class="button" href="https://www.gta-mods.com/" target="_blank">Mods Store</a>
+    </div>
+
+    <div class="rules-section">
+      <h2>📜 قوانين الرول بلاي (Roleplay Rules)</h2>
+      
+      <div class="rule-item">
+        <strong>1. تقمص الشخصية (In Character):</strong>
+        يجب عليك
+        
