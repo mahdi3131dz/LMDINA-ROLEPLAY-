@@ -3,230 +3,233 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LMDINA ROLEPLAY | الإعلانات والتحديثات</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+  <title>NEW VILLE | Rules & Updates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;900&display=swap" rel="stylesheet">
   <style>
-    /* إعدادات الألوان - أخضر و أسود */
     :root {
-      --primary-green: #00ff41; /* أخضر نيون */
-      --dark-green: #003b00;
-      --bg-black: #000000;
+      --primary: #FFD700; /* أصفر ذهبي */
+      --bg: #000000;
       --card-bg: #050505;
-      --border-color: #0f2e0f;
-      --text-white: #ffffff;
+      --border: #1a1a1a;
+      --text: #ffffff;
     }
 
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: var(--bg-black);
-      color: var(--text-white);
+      background-color: var(--bg);
+      color: var(--text);
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    /* العنوان الرئيسي */
-    header {
-      text-align: center;
+      width: 90%;
+      max-width: 800px;
+      margin-top: 50px;
       margin-bottom: 50px;
-      padding-top: 20px;
     }
 
-    header h1 {
-      font-size: 3.5em;
+    /* العنوان */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 3em;
       font-weight: 900;
-      color: var(--primary-green);
+      color: var(--primary);
       text-transform: uppercase;
       margin: 0;
-      text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
-      letter-spacing: -1px;
+      letter-spacing: 3px;
     }
 
-    header p {
+    .header p {
       color: #666;
-      font-size: 1.2em;
+      font-size: 1.1em;
       margin-top: 5px;
     }
 
-    /* قسم الإعلانات (News) */
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--primary-green);
-      font-size: 1.5em;
-      margin-bottom: 20px;
-      border-right: 4px solid var(--primary-green);
-      padding-right: 15px;
-    }
-
-    .news-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      transition: 0.3s;
-    }
-
-    .news-card:hover {
-      border-color: var(--primary-green);
-      box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
-    }
-
-    .news-tag {
-      background: var(--dark-green);
-      color: var(--primary-green);
-      padding: 2px 10px;
-      border-radius: 5px;
-      font-size: 0.8em;
+    /* قسم الإعلانات */
+    .announcement {
+      background: linear-gradient(90deg, transparent, #111, transparent);
+      border-top: 1px solid var(--primary);
+      border-bottom: 1px solid var(--primary);
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--primary);
       font-weight: bold;
+    }
+
+    /* نظام القوانين المنسدلة (مثل الموقع المطلوب) */
+    .rules-section {
+      width: 100%;
+    }
+
+    .rule-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
       margin-bottom: 10px;
-      display: inline-block;
+      overflow: hidden;
     }
 
-    .news-card h3 {
-      margin: 10px 0;
-      font-size: 1.3em;
-    }
-
-    .news-card p {
-      color: #aaa;
-      margin: 0;
-    }
-
-    /* قسم التحديثات (Updates) */
-    .updates-list {
-      background: #030303;
-      border-radius: 12px;
+    .rule-header {
       padding: 20px;
-      border: 1px solid #111;
-    }
-
-    .update-item {
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 0;
-      border-bottom: 1px solid #111;
+      transition: 0.3s;
+      font-weight: bold;
     }
 
-    .update-item:last-child {
-      border: none;
+    .rule-header:hover {
+      background: #0a0a0a;
+      color: var(--primary);
     }
 
-    .update-info b {
-      color: var(--primary-green);
-      display: block;
+    .rule-header i {
+      color: var(--primary);
     }
 
-    .update-date {
-      font-size: 0.8em;
-      color: #444;
+    .rule-content {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease;
+      background: #020202;
+      color: #888;
+      font-size: 0.95em;
+      border-top: 0 solid var(--border);
     }
 
-    /* قوانين مصغرة للمدينة */
-    .mini-rules {
-      margin-top: 50px;
+    /* عند فتح القائمة */
+    .rule-box.active .rule-content {
+      max-height: 500px;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .rule-box.active .rule-header {
+      color: var(--primary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* قسم العقوبات */
+    .warning-section {
+      margin-top: 40px;
+      border: 1px solid #300;
+      background: #080000;
+      padding: 20px;
+      border-radius: 8px;
       text-align: center;
-      padding: 30px;
-      border-top: 1px solid #111;
+    }
+
+    .warning-section h2 {
+      color: #ff4444;
+      margin-top: 0;
     }
 
     footer {
       text-align: center;
-      padding: 40px;
-      color: #222;
-      font-weight: bold;
-      font-size: 0.9em;
+      color: #333;
+      padding: 30px;
+      font-size: 0.8em;
     }
 
-    /* انيميشن بسيط */
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.7; }
-      100% { opacity: 1; }
-    }
-    .live-dot {
-      width: 10px;
-      height: 10px;
-      background: var(--primary-green);
-      border-radius: 50%;
-      display: inline-block;
-      margin-left: 8px;
-      animation: pulse 1.5s infinite;
-    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <header>
-      <h1>LMDINA ROLEPLAY</h1>
-      <p>المركز الرئيسي للإعلانات والتحديثات الرسمية</p>
-    </header>
-
-    <div class="section-title">
-      <span class="live-dot"></span> إعلانات الإدارة
+    <div class="header">
+      <h1>NEW VILLE</h1>
+      <p>WELCOME TO THE NEXT LEVEL OF RP</p>
     </div>
 
-    <div class="news-card">
-      <div class="news-tag">إعلان هام</div>
-    </h3> تعلن ادارة عن عودة لمدينة رول بلاي</h3>
-      <p>بحلة جديده وبطموح جديده.</p>
+    <div class="announcement">
+      📢 آخر التحديثات: تم تحسين نظام السجون وإضافة سيارات جديدة للوكالة!
     </div>
 
-    <div class="news-card">
-      <div class="news-tag">فعالية</div>
-      <h3>انشاء الله</h3>
-      <p>انضراكم يا اساطير </p>
-    </div>
-
-    <div class="section-title" style="margin-top: 50px;">
-      ⚙️ تحديثات السيرفر (Changelog)
-    </div>
-
-    <div class="updates-list">
-      <div class="update-item">
-        <div class="update-info">
-          <b>تحديث النظام v2.1</b>
-          <span style="color:#888">إضافة نظام حقيبة الظهر المطور وإصلاح مشاكل استهلاك الوقود.</span>
+    <div class="rules-section">
+      <div class="rule-box" onclick="toggleRule(this)">
+        <div class="rule-header">
+          <span>01. القتل العشوائي (RDM)</span>
+          <span>▼</span>
         </div>
-        <div class="update-date">2026/01/06</div>
+        <div class="rule-content">
+          يمنع قتل أي لاعب بدون وجود قصة أو سبب درامي قوي. يجب أن يكون هناك تفاعل كلامي قبل البدء بأي إطلاق نار.
+        </div>
       </div>
 
-      <div class="update-item">
-        <div class="update-info">
-          <b>تحديث الجرافيكس</b>
-          <span style="color:#888">تحسين إضاءة الشوارع في منطقة الداون تاون وإضافة تأثيرات مطر واقعية.</span>
+      <div class="rule-box" onclick="toggleRule(this)">
+        <div class="rule-header">
+          <span>02. الدهس العشوائي (VDM)</span>
+          <span>▼</span>
         </div>
-        <div class="update-date">2026/01/02</div>
+        <div class="rule-content">
+          المركبات وسيلة تنقل وليست سلاحاً. يمنع دهس اللاعبين عمداً لتخريب لعبهم أو قتلهم.
+        </div>
       </div>
 
-      <div class="update-item">
-        <div class="update-info">
-          <b>نظام الوظائف</b>
-          <span style="color:#888">إضافة وظيفة "عامل النظافة" و "سائق التوصيل" للمبتدئين.</span>
+      <div class="rule-box" onclick="toggleRule(this)">
+        <div class="rule-header">
+          <span>03. الخوف على الحياة (Fear RP)</span>
+          <span>▼</span>
         </div>
-        <div class="update-date">2025/12/28</div>
+        <div class="rule-content">
+          إذا تم توجيه سلاح نحوك، يجب أن تمثل الخوف وتستجيب للأوامر. لا يمكنك سحب سلاحك وأنت تحت التهديد المباشر.
+        </div>
+      </div>
+
+      <div class="rule-box" onclick="toggleRule(this)">
+        <div class="rule-header">
+          <span>04. الميتا جيمنج (Meta Gaming)</span>
+          <span>▼</span>
+        </div>
+        <div class="rule-content">
+          يمنع استخدام أي معلومات عرفتها من خارج اللعبة (مثل البث المباشر أو ديسكورد) لتغيير مجرى الأحداث داخل شخصيتك.
+        </div>
+      </div>
+
+      <div class="rule-box" onclick="toggleRule(this)">
+        <div class="rule-header">
+          <span>05. الهروب من السيناريو (Combat Log)</span>
+          <span>▼</span>
+        </div>
+        <div class="rule-content">
+          الخروج من السيرفر أثناء مطاردة الشرطة أو أثناء قتال جاري لتجنب الخسارة أو السجن يعتبر مخالفة تستوجب الباند.
+        </div>
       </div>
     </div>
 
-    <div class="mini-rules">
-      <p style="color: #444;">التزامك بالقوانين يعكس جودة لعبك. استمتع في LMDINA.</p>
+    <div class="warning-section">
+      <h2>⚠️ قوانين صارمة</h2>
+      <p style="color: #666;">سب الدين، العنصرية، أو استخدام الهاكات تؤدي إلى <b>الطرد النهائي</b> دون أي نقاش.</p>
     </div>
 
     <footer>
-      © 2026 LMDINA ROLEPLAY | ALL RIGHTS RESERVED
+      © 2026 NEW VILLE ROLEPLAY | ALL RIGHTS RESERVED
     </footer>
   </div>
 
+  <script>
+    function toggleRule(element) {
+      // إغلاق كل القوائم الأخرى (اختياري)
+      document.querySelectorAll('.rule-box').forEach(box => {
+        if (box !== element) box.classList.remove('active');
+      });
+      
+      // فتح أو إغلاق القائمة المختارة
+      element.classList.toggle('active');
+    }
+  </script>
+
 </body>
-  </html>
-  
+                   </html>
+                   
