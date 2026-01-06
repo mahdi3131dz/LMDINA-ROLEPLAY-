@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEW VILLE | Rules & Updates</title>
+  <title>NEW VILLE | الفصائل والأوامر</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -12,6 +12,10 @@
       --card-bg: #050505;
       --border: #1a1a1a;
       --text: #ffffff;
+      --police-blue: #1e90ff;
+      --medic-red: #ff4d4d;
+      --mech-orange: #ffa500;
+      --gang-gold: #FFD700;
     }
 
     body {
@@ -23,54 +27,52 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      /* إخفاء محتوى الصفحة في البداية */
+      visibility: hidden; 
+      opacity: 0;
+      transition: visibility 0s 0.5s, opacity 0.5s linear;
+    }
+    
+    body.loaded {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.5s linear;
     }
 
     .container {
       width: 90%;
-      max-width: 800px;
-      margin-top: 50px;
+      max-width: 900px;
+      margin: 60px auto;
+    }
+
+    header {
+      text-align: center;
       margin-bottom: 50px;
     }
 
-    /* العنوان */
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .header h1 {
-      font-size: 3em;
+    header h1 {
+      font-size: 3.5em;
       font-weight: 900;
       color: var(--primary);
       text-transform: uppercase;
       margin: 0;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
     }
 
-    .header p {
-      color: #666;
-      font-size: 1.1em;
-      margin-top: 5px;
-    }
-
-    /* قسم الإعلانات */
-    .announcement {
-      background: linear-gradient(90deg, transparent, #111, transparent);
-      border-top: 1px solid var(--primary);
-      border-bottom: 1px solid var(--primary);
-      padding: 15px;
-      text-align: center;
-      margin-bottom: 40px;
+    .section-label {
       color: var(--primary);
-      font-weight: bold;
+      font-weight: 900;
+      font-size: 1.4em;
+      margin: 40px 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-right: 4px solid var(--primary);
+      padding-right: 15px;
     }
 
-    /* نظام القوانين المنسدلة (مثل الموقع المطلوب) */
-    .rules-section {
-      width: 100%;
-    }
-
-    .rule-box {
+    /* نظام الأكورديون */
+    .accordion-item {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -78,158 +80,200 @@
       overflow: hidden;
     }
 
-    .rule-header {
-      padding: 20px;
+    .accordion-header {
+      padding: 18px 25px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-weight: 700;
       transition: 0.3s;
-      font-weight: bold;
     }
 
-    .rule-header:hover {
-      background: #0a0a0a;
-      color: var(--primary);
-    }
+    .accordion-header:hover { background: #0a0a0a; }
 
-    .rule-header i {
-      color: var(--primary);
-    }
-
-    .rule-content {
-      padding: 0 20px;
+    .accordion-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out, padding 0.3s ease;
+      transition: all 0.4s ease-out;
       background: #020202;
-      color: #888;
-      font-size: 0.95em;
-      border-top: 0 solid var(--border);
+      padding: 0 25px;
     }
 
-    /* عند فتح القائمة */
-    .rule-box.active .rule-content {
-      max-height: 500px;
-      padding: 20px;
+    .accordion-item.active .accordion-content {
+      max-height: 1500px;
+      padding: 20px 25px;
       border-top: 1px solid var(--border);
     }
 
-    .rule-box.active .rule-header {
+    .accordion-item.active .accordion-header { color: var(--primary); }
+
+    /* تنسيق الأوامر */
+    .cmd-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .cmd-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #111;
+    }
+
+    .cmd-name {
       color: var(--primary);
-      border-bottom: 1px solid var(--border);
+      font-family: monospace;
+      font-weight: bold;
+      background: #111;
+      padding: 2px 8px;
+      border-radius: 4px;
     }
 
-    /* قسم العقوبات */
-    .warning-section {
-      margin-top: 40px;
-      border: 1px solid #300;
-      background: #080000;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
+    .cmd-desc { color: #888; font-size: 0.9em; }
+
+    /* ألوان مخصصة للفصائل */
+    .police-header { border-right: 4px solid var(--police-blue); color: var(--police-blue) !important; }
+    .medic-header { border-right: 4px solid var(--medic-red); color: var(--medic-red) !important; }
+    .mech-header { border-right: 4px solid var(--mech-orange); color: var(--mech-orange) !important; }
+
+    footer { text-align: center; color: #222; padding: 60px; font-weight: bold; }
+
+    /* ستايل شاشة التحميل (Preloader) */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
     }
 
-    .warning-section h2 {
-      color: #ff4444;
-      margin-top: 0;
+    .loader {
+      border: 5px solid rgba(255, 215, 0, 0.2);
+      border-top: 5px solid var(--primary);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
     }
 
-    footer {
-      text-align: center;
-      color: #333;
-      padding: 30px;
-      font-size: 0.8em;
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
+    #my-name {
+      color: var(--primary);
+      font-size: 1.5em;
+      margin-top: 20px;
+      opacity: 0.3; /* شفافية خفيفة */
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
   </style>
 </head>
 <body>
 
+  <div id="preloader">
+    <div class="loader"></div>
+    <div id="my-name">ZEROX</div>
+  </div>
+
   <div class="container">
-    <div class="header">
+    <header>
       <h1>NEW VILLE</h1>
-      <p>WELCOME TO THE NEXT LEVEL OF RP</p>
-    </div>
+      <p style="color:#555">دليل الفصائل والأوامر الرسمية</p>
+    </header>
 
-    <div class="announcement">
-      📢 آخر التحديثات: تم تحسين نظام السجون وإضافة سيارات جديدة للوكالة!
-    </div>
-
-    <div class="rules-section">
-      <div class="rule-box" onclick="toggleRule(this)">
-        <div class="rule-header">
-          <span>01. القتل العشوائي (RDM)</span>
-          <span>▼</span>
-        </div>
-        <div class="rule-content">
-          يمنع قتل أي لاعب بدون وجود قصة أو سبب درامي قوي. يجب أن يكون هناك تفاعل كلامي قبل البدء بأي إطلاق نار.
-        </div>
-      </div>
-
-      <div class="rule-box" onclick="toggleRule(this)">
-        <div class="rule-header">
-          <span>02. الدهس العشوائي (VDM)</span>
-          <span>▼</span>
-        </div>
-        <div class="rule-content">
-          المركبات وسيلة تنقل وليست سلاحاً. يمنع دهس اللاعبين عمداً لتخريب لعبهم أو قتلهم.
-        </div>
-      </div>
-
-      <div class="rule-box" onclick="toggleRule(this)">
-        <div class="rule-header">
-          <span>03. الخوف على الحياة (Fear RP)</span>
-          <span>▼</span>
-        </div>
-        <div class="rule-content">
-          إذا تم توجيه سلاح نحوك، يجب أن تمثل الخوف وتستجيب للأوامر. لا يمكنك سحب سلاحك وأنت تحت التهديد المباشر.
-        </div>
-      </div>
-
-      <div class="rule-box" onclick="toggleRule(this)">
-        <div class="rule-header">
-          <span>04. الميتا جيمنج (Meta Gaming)</span>
-          <span>▼</span>
-        </div>
-        <div class="rule-content">
-          يمنع استخدام أي معلومات عرفتها من خارج اللعبة (مثل البث المباشر أو ديسكورد) لتغيير مجرى الأحداث داخل شخصيتك.
-        </div>
-      </div>
-
-      <div class="rule-box" onclick="toggleRule(this)">
-        <div class="rule-header">
-          <span>05. الهروب من السيناريو (Combat Log)</span>
-          <span>▼</span>
-        </div>
-        <div class="rule-content">
-          الخروج من السيرفر أثناء مطاردة الشرطة أو أثناء قتال جاري لتجنب الخسارة أو السجن يعتبر مخالفة تستوجب الباند.
+    <div class="section-label police-header">👮 قسم الشرطة (Police)</div>
+    <div class="accordion-item" onclick="toggleAccordion(this)">
+      <div class="accordion-header">أوامر الضبط والإحضار <span>▼</span></div>
+      <div class="accordion-content">
+        <div class="cmd-grid">
+          <div class="cmd-row"><span class="cmd-name">/cuff [ID]</span><span class="cmd-desc">كلبشة المتهم</span></div>
+          <div class="cmd-row"><span class="cmd-name">/jail [ID] [Time]</span><span class="cmd-desc">إرسال المتهم للسجن</span></div>
+          <div class="cmd-row"><span class="cmd-name">/search [ID]</span><span class="cmd-desc">تفتيش الشخص</span></div>
+          <div class="cmd-row"><span class="cmd-name">/fine [ID] [Amount]</span><span class="cmd-desc">إعطاء مخالفة مالية</span></div>
         </div>
       </div>
     </div>
 
-    <div class="warning-section">
-      <h2>⚠️ قوانين صارمة</h2>
-      <p style="color: #666;">سب الدين، العنصرية، أو استخدام الهاكات تؤدي إلى <b>الطرد النهائي</b> دون أي نقاش.</p>
+    <div class="section-label medic-header">🚑 قسم الإسعاف (Medic)</div>
+    <div class="accordion-item" onclick="toggleAccordion(this)">
+      <div class="accordion-header">أوامر العلاج والإنقاذ <span>▼</span></div>
+      <div class="accordion-content">
+        <div class="cmd-grid">
+          <div class="cmd-row"><span class="cmd-name">/revive [ID]</span><span class="cmd-desc">إنعاش شخص مغمى عليه</span></div>
+          <div class="cmd-row"><span class="cmd-name">/heal [ID]</span><span class="cmd-desc">معالجة جروح اللاعب</span></div>
+          <div class="cmd-row"><span class="cmd-name">/medkit</span><span class="cmd-desc">استخدام حقيبة الإسعاف</span></div>
+        </div>
+      </div>
     </div>
 
-    <footer>
-      © 2026 NEW VILLE ROLEPLAY | ALL RIGHTS RESERVED
-    </footer>
+    <div class="section-label mech-header">🔧 قسم الميكانيكي (Mechanic)</div>
+    <div class="accordion-item" onclick="toggleAccordion(this)">
+      <div class="accordion-header">أوامر الصيانة والقطر <span>▼</span></div>
+      <div class="accordion-content">
+        <div class="cmd-grid">
+          <div class="cmd-row"><span class="cmd-name">/repair</span><span class="cmd-desc">تصليح محرك السيارة</span></div>
+          <div class="cmd-row"><span class="cmd-name">/impound</span><span class="cmd-desc">حجز السيارة المخالفة</span></div>
+          <div class="cmd-row"><span class="cmd-name">/tow</span><span class="cmd-desc">سحب السيارة بالونش</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">🏴 قسم العصابات (Gangs)</div>
+    <div class="accordion-item" onclick="toggleAccordion(this)">
+      <div class="accordion-header">أوامر الإدارة والجرائم <span>▼</span></div>
+      <div class="accordion-content">
+        <div class="cmd-grid">
+          <div class="cmd-row"><span class="cmd-name">/gang invite [ID]</span><span class="cmd-desc">دعوة عضو</span></div>
+          <div class="cmd-row"><span class="cmd-name">/selldreg [ID] [Type]</span><span class="cmd-desc">بيع المخدرات</span></div>
+          <div class="cmd-row"><span class="cmd-name">/drag [ID]</span><span class="cmd-desc">سحب المخطوف</span></div>
+          <div class="cmd-row"><span class="cmd-name">/robbank</span><span class="cmd-desc">بدء سرقة البنك</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="border-right-color:#888; color:#888;">👤 قسم المواطنين (Members)</div>
+    <div class="accordion-item" onclick="toggleAccordion(this)">
+      <div class="accordion-header">أوامر عامة للاعبين <span>▼</span></div>
+      <div class="accordion-content">
+        <div class="cmd-grid">
+          <div class="cmd-row"><span class="cmd-name">/id</span><span class="cmd-desc">معرفة الآيدي الخاص بك</span></div>
+          <div class="cmd-row"><span class="cmd-name">/pay [ID] [Amount]</span><span class="cmd-desc">تحويل أموال لشخص</span></div>
+          <div class="cmd-row"><span class="cmd-name">/report [Msg]</span><span class="cmd-desc">إرسال بلاغ للإدارة</span></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>© 2026 NEW VILLE | QUALITY ROLEPLAY</footer>
   </div>
 
   <script>
-    function toggleRule(element) {
-      // إغلاق كل القوائم الأخرى (اختياري)
-      document.querySelectorAll('.rule-box').forEach(box => {
-        if (box !== element) box.classList.remove('active');
-      });
-      
-      // فتح أو إغلاق القائمة المختارة
-      element.classList.toggle('active');
+    // وظيفة لفتح/إغلاق الأكورديون
+    function toggleAccordion(element) {
+      const isActive = element.classList.contains('active');
+      document.querySelectorAll('.accordion-item').forEach(item => item.classList.remove('active'));
+      if (!isActive) element.classList.add('active');
     }
-  </script>
 
+    // إخفاء شاشة التحميل بعد تحميل الصفحة
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      preloader.style.opacity = '0';
+      preloader.style.visibility = 'hidden';
+      document.body.classList.add('loaded'); // لإظهار محتوى الصفحة
+    });
+  </script>
 </body>
-                   </html>
-                   
+                                 </html>
+  
