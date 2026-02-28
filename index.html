@@ -3,260 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEW CITY ROLEPLAY | لانشر سامب</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <title>New City Roleplay - Dev Zerox</title>
     <style>
+        /* تعريف الألوان الأساسية */
         :root {
-            --primary-color: #00d2ff;
-            --secondary-color: #3a7bd5;
-            --bg-dark: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --text-white: #ffffff;
+            --main-orange: #ff6600; /* برتقالي أساسي قوى */
+            --dark-orange: #cc5200; /* برتقالي داكن للتفاعل */
+            --bg-color: #1a1a1a; /* خلفية داكنة جداً لإبراز البرتقالي */
+            --card-bg: #262626; /* خلفية البطاقات */
+            --text-color: #e6e6e6; /* لون النص الأساسي */
         }
 
         body {
-            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            scroll-behavior: smooth;
-        }
-
-        /* الهيدر والقائمة */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(0, 0, 0, 0.8);
-            position: fixed;
-            width: 84%;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px var(--primary-color);
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-right: 25px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
-        }
-
-        /* قسم الهيرو (الرئيسية) */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.wallpaperscraft.com/image/single/gta_v_gta_5_rockstar_games_93566_1920x1080.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #ccc;
-        }
-
-        .btn-download {
-            padding: 15px 40px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
-            transition: 0.4s;
-        }
-
-        .btn-download:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px var(--primary-color);
-        }
-
-        /* قسم الإحصائيات */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 50px 8%;
-            background: var(--card-bg);
-        }
-
-        .stat-card {
             text-align: center;
             padding: 20px;
+            margin: 0;
+            line-height: 1.6;
         }
 
-        .stat-card i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .stat-card h3 { font-size: 2rem; margin: 5px 0; }
-
-        /* قسم الميزات */
-        .features {
-            padding: 80px 8%;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: var(--primary-color);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-box {
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
             background: var(--card-bg);
             padding: 30px;
+            border-radius: 20px;
+            /* حد برتقالي علوي سميك */
+            border-top: 5px solid var(--main-orange);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        /* تنسيق الهيدر والشعار */
+        .header-section {
+            margin-bottom: 30px;
+        }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 120px;
+            background-color: var(--bg-color);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--main-orange);
+            color: var(--main-orange);
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+        }
+
+        h1 {
+            color: var(--main-orange);
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 28px;
+        }
+
+        .dev-tag {
+            background: rgba(255, 102, 0, 0.1);
+            color: var(--main-orange);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            display: inline-block;
+            border: 1px solid rgba(255, 102, 0, 0.3);
+        }
+
+        /* أزرار الروابط - برتقالية بالكامل */
+        .links-section {
+            margin: 30px 0;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 15px 0;
+            padding: 18px;
+            text-decoration: none;
+            color: #fff; /* نص أبيض لتباين أفضل */
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s ease;
+            font-size: 17px;
+            /* خلفية برتقالية متدرجة */
+            background: linear-gradient(45deg, var(--main-orange), var(--dark-orange));
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(255, 102, 0, 0.4);
+            background: linear-gradient(45deg, var(--dark-orange), var(--main-orange));
+        }
+
+        /* قسم القوانين - بلمسة برتقالية */
+        .rules-card {
+            background: rgba(255, 102, 0, 0.03);
+            padding: 25px;
             border-radius: 15px;
-            border-bottom: 4px solid var(--primary-color);
+            text-align: right;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 102, 0, 0.2);
+        }
+
+        .rules-card h3 {
+            color: var(--main-orange);
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 102, 0, 0.2);
+            padding-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .rules-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rules-list li {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-right: 3px solid transparent;
             transition: 0.3s;
         }
 
-        .feature-box:hover {
-            transform: translateY(-10px);
+        .rules-list li:hover {
+            background: rgba(255, 102, 0, 0.05);
+            border-right: 3px solid var(--main-orange);
+            color: #fff;
         }
 
-        .feature-box i {
-            font-size: 2rem;
-            margin-bottom: 15px;
+        .rule-title {
+            font-weight: bold;
+            color: var(--main-orange);
+            margin-left: 8px;
         }
 
-        /* الفوتر */
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: #000;
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+            padding-top: 20px;
             border-top: 1px solid #333;
         }
-
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: 0.3s;
+        
+        .footer b {
+            color: var(--main-orange);
         }
-
-        .social-icons a:hover { color: var(--primary-color); }
-
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">🏙️ NEW CITY RP</div>
-        <nav>
-            <a href="#">الرئيسية</a>
-            <a href="#features">المميزات</a>
-            <a href="#download">التحميل</a>
-            <a href="#discord">ديسكورد</a>
-        </nav>
-    </header>
+    <div class="container">
+        <div class="header-section">
+            <div class="logo-placeholder">NC</div>
+            <h1>NEW CITY ROLEPLAY 🏙️</h1>
+            <div class="dev-tag">بواسطة المطور: <b>Dev Zerox</b> 💻</div>
+        </div>
 
-    <section class="hero">
-        <h1>NEW CITY <span style="color: var(--primary-color);">ROLEPLAY</span></h1>
-        <p>عش حياتك الواقعية في أكبر سيرفر سامب لانشر عربي 🚔</p>
-        <a href="#download" class="btn-download"><i class="fas fa-download"></i> تحميل اللانشر الآن</a>
-    </section>
+        <div class="links-section">
+            <a href="https://discord.gg/aDXmY3BpGz" class="btn" target="_blank">انضم لسيرفر الديسكورد 💬</a>
+            <a href="https://mega.nz/file/Tm5WSLbQ#lIkfb3InZNCuUuOKiLGKKCs1z7MB-Ztr1S8ad9S6ilM" class="btn" target="_blank">تحميل مود الـ PC (MEGA) 🖥️</a>
+            <a href="https://www.mediafire.com/file/cgeu59no55vvax6/MOD+DZ+AIR+CITY+BY+ZA3IIM.zip/file" class="btn" target="_blank">تحميل مود الـ Mobile (MediaFire) 📱</a>
+        </div>
 
-    <div class="stats">
-        <div class="stat-card">
-            <i class="fas fa-users"></i>
-            <h3>+500</h3>
-            <p>لاعب متصل</p>
+        <div class="rules-card">
+            <h3>📜 قوانين New City Roleplay</h3>
+            <ul class="rules-list">
+                <li><span class="rule-title">1. RDM:</span> يمنع منعاً باتاً القتل العشوائي بدون سبب واقعي. 🔫</li>
+                <li><span class="rule-title">2. VDM:</span> يمنع دهس اللاعبين أو استخدام المركبات كسلاح للقتل. 🚗</li>
+                <li><span class="rule-title">3. Fail RP:</span> يجب عليك تمثيل دورك بالكامل وعدم كسر الواقعية. 🎭</li>
+                <li><span class="rule-title">4. Combat Log:</span> يمنع الخروج من اللعبة أثناء مطاردة أو سيناريو قائم. 🚫</li>
+                <li><span class="rule-title">5. Safe Zones:</span> المناطق الحكومية والمستشفيات مناطق آمنة يمنع فيها الإجرام. 🏥</li>
+                <li><span class="rule-title">6. Meta Gaming:</span> يمنع استخدام معلومات من خارج اللعبة (مثل الديسكورد) لصالحك. 🌍</li>
+                <li><span class="rule-title">7. Power Gaming:</span> يمنع القيام بأفعال خارقة لا يمكن للبشر القيام بها في الحقيقة. 💪</li>
+            </ul>
         </div>
-        <div class="stat-card">
-            <i class="fas fa-shield-alt"></i>
-            <h3>100%</h3>
-            <p>حماية ضد الهكر</p>
-        </div>
-        <div class="stat-card">
-            <i class="fas fa-car"></i>
-            <h3>+200</h3>
-            <p>سيارة معدلة</p>
-        </div>
-        <div class="stat-card">
-            <i class="fas fa-server"></i>
-            <h3>99.9%</h3>
-            <p>ثبات السيرفر</p>
+
+        <div class="footer">
+            انتظروا قريباً نسخة الأجهزة الضعيفة من تقديم <b>Dev Zerox</b> ✨📉
         </div>
     </div>
 
-    <section id="features" class="features">
-        <h2 class="section-title">لماذا تختار نيوي سيتي؟ 🤔</h2>
-        <div class="features-grid">
-            <div class="feature-box">
-                <i class="fas fa-briefcase" style="color: #ff9f43;"></i>
-                <h3>وظائف واقعية</h3>
-                <p>من الشرطة والإسعاف إلى الميكانيكي والتاجر، كل شيء متاح لك لتبني ثروتك.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-map-marked-alt" style="color: #10ac84;"></i>
-                <h3>مابات حصرية</h3>
-                <p>خرائط ومقرات مصممة خصيصاً لسيرفرنا لن تجدها في أي مكان آخر.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-headset" style="color: #ee5253;"></i>
-                <h3>دعم فني 24/7</h3>
-                <p>طاقم إدارة محترف متواجد على مدار الساعة لمساعدتك في حل مشاكلك.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="download" style="padding: 100px 8%; text-align: center; background: #111;">
-        <h2 class="section-title">جاهز للبدء؟ 🚀</h2>
-        <p style="margin-bottom: 40px;">حمل اللانشر الخاص بنا واستمتع بتجربة لعب سلسة وبدون تعليق.</p>
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <a href="#" class="btn-download" style="background: #27ae60;"><i class="fab fa-android"></i> تحميل للأندرويد</a>
-            <a href="#" class="btn-download" style="background: #2980b9;"><i class="fab fa-windows"></i> تحميل للكمبيوتر</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 <b>NEW CITY ROLEPLAY</b></p>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-discord"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-    </footer>
-
 </body>
-  </html>
-              
-  
+    </html>
+            
