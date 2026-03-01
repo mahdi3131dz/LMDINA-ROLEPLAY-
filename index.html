@@ -3,136 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New City Roleplay - جارٍ التحميل</title>
+    <title>New City Roleplay - Dev Zerox</title>
     <style>
         :root {
-            /* تم استبدال الألوان القديمة بالألوان المستوحاة من الشعار */
-            --logo-orange: #ff9900; /* اللون البرتقالي الساطع للشعار */
-            --dark-bg: #000000; /* الخلفية السوداء للشعار */
+            --main-orange: #ff6600;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.95);
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--dark-bg); /* استخدام الخلفية السوداء */
+            margin: 0; padding: 0; height: 100%;
+            background-color: var(--dark-bg);
             font-family: 'Cairo', sans-serif;
-            overflow: hidden; /* إخفاء أي تمرير أثناء التحميل */
-        }
-
-        .loading-container {
-            text-align: center;
-            /* تأثير تلاشي للدخول */
-            animation: fadeIn 1s ease-out; 
-        }
-
-        .logo-box {
-            margin-bottom: 30px;
-            /* إضافة ظل توهج برتقالي حول الشعار */
-            filter: drop-shadow(0 0 15px rgba(255, 153, 0, 0.6));
-        }
-
-        .logo-box img {
-            max-width: 250px; /* التحكم بحجم الشعار */
-            height: auto;
-            /* يمكنك استخدام الرابط المباشر لشعارك هنا */
-            /* للحصول على تأثير التلاشي عند البدء */
-            animation: logoScale 1.5s ease-out forwards; 
-        }
-
-        .loading-text {
             color: white;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            /* تأثير نبض بسيط للنص */
-            animation: textPulse 1.5s infinite; 
+            overflow-x: hidden;
         }
 
-        .dev-credit {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 25px;
+        /* --- واجهة التحميل (Loading Screen) --- */
+        #loading-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark-bg);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease, visibility 1s;
         }
 
-        .dev-credit b {
-            color: var(--logo-orange); /* تلوين اسم المطور */
+        .loader-logo {
+            max-width: 220px;
+            filter: drop-shadow(0 0 15px var(--main-orange));
+            animation: pulse 2s infinite;
         }
 
-        /* حاوية شريط التحميل */
-        .progress-bar-container {
-            width: 350px;
-            height: 8px;
-            background-color: rgba(255, 255, 255, 0.1); /* لون الخلفية الخافت للشريط */
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 0 auto;
-            border: 1px solid rgba(255, 153, 0, 0.3); /* إطار برتقالي خفيف */
+        .progress-bar {
+            width: 250px; height: 5px;
+            background: rgba(255,255,255,0.1);
+            margin-top: 30px; border-radius: 10px; overflow: hidden;
         }
 
-        /* الجزء المتحرك من شريط التحميل */
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--logo-orange), #ffcc00); /* تدرج لوني برتقالي للشريط */
-            width: 0%; /* سيبدأ من 0 */
-            border-radius: 10px;
-            /* تحريك الشريط من البداية للنهاية في 5 ثواني */
-            animation: fillProgress 5s linear forwards; 
-            box-shadow: 0 0 10px rgba(255, 153, 0, 0.8); /* توهج للشريط */
+        .progress-fill {
+            height: 100%; width: 0%;
+            background: var(--main-orange);
+            animation: loadProgress 3s forwards;
         }
 
-        /* تلميح صغير للأجهزة الضعيفة */
-        .low-end-tip {
-            margin-top: 20px;
-            color: #666;
-            font-size: 12px;
-            font-style: italic;
+        /* --- المحتوى الرئيسي (Main Content) --- */
+        #main-content {
+            opacity: 0;
+            display: none;
+            padding: 20px;
+            animation: fadeIn 1.5s forwards;
         }
 
-        /* حركات التحريك (Animations) */
-        @keyframes fillProgress {
-            0% { width: 0%; }
-            100% { width: 100%; }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .main-logo { width: 120px; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--main-orange)); }
+
+        h1 { color: var(--main-orange); margin: 10px 0; font-size: 24px; }
+
+        .btn {
+            display: block; padding: 15px; margin: 12px 0;
+            background: linear-gradient(45deg, var(--main-orange), #ff9900);
+            color: white; text-decoration: none; font-weight: bold;
+            border-radius: 12px; transition: 0.3s;
         }
 
-        @keyframes logoScale {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+
+        .rules-section {
+            background: rgba(0,0,0,0.3);
+            padding: 20px; border-radius: 15px;
+            text-align: right; margin-top: 30px;
+            border-right: 4px solid var(--main-orange);
         }
 
-        @keyframes textPulse {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
-        }
+        .rules-section h3 { color: var(--main-orange); text-align: center; margin-top: 0; }
+        
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+        .rule-num { color: var(--main-orange); font-weight: bold; margin-left: 5px; }
 
+        /* --- الحركات (Animations) --- */
+        @keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div class="loading-container">
-        <div class="logo-box">
-            <img src="https://images2.imgbox.com/6c/f4/P1I8fP6X_o.png" alt="NC Logo" />
+    <div id="loading-screen">
+        <img src="https://images2.imgbox.com/4a/ff/uYoL3eOb_o.png" class="loader-logo" alt="Logo">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
-
-        <div class="loading-text">NEW CITY ROLEPLAY</div>
-        <div class="dev-credit">بواسطة المطور: <b>Dev Zerox</b></div>
-
-        <div class="progress-bar-container">
-            <div class="progress-bar-fill"></div>
-        </div>
-
-        <div class="low-end-tip">انتظروا قريباً نسخة الأجهزة الضعيفة... 📉</div>
+        <p style="color: #666; margin-top: 15px;">New City Roleplay is Loading...</p>
     </div>
 
+    <div id="main-content">
+        <div class="container">
+            <img src="https://images2.imgbox.com/4a/ff/uYoL3eOb_o.png" class="main-logo" alt="Logo">
+            <h1>NEW CITY ROLEPLAY 🏙️</h1>
+            <p style="color: #aaa;">Developed by <b>Dev Zerox</b> 💻</p>
+
+            <div class="links">
+                <a href="https://discord.gg/aDXmY3BpGz" class="btn" target="_blank">انضم لسيرفر الديسكورد 💬</a>
+                <a href="https://mega.nz/file/Tm5WSLbQ#lIkfb3InZNCuUuOKiLGKKCs1z7MB-Ztr1S8ad9S6ilM" class="btn" target="_blank">تحميل Mod PC 🖥️</a>
+                <a href="https://www.mediafire.com/file/cgeu59no55vvax6/MOD+DZ+AIR+CITY+BY+ZA3IIM.zip/file" class="btn" target="_blank">تحميل Mod Mobile 📱</a>
+            </div>
+
+            <div class="rules-section">
+                <h3>📜 قوانين السيرفر</h3>
+                <ul>
+                    <li><span class="rule-num">1.</span> يمنع القتل العشوائي (RDM) 🔫</li>
+                    <li><span class="rule-num">2.</span> يمنع دهس اللاعبين (VDM) 🚗</li>
+                    <li><span class="rule-num">3.</span> التزم بتمثيل الدور (Fail RP) 🎭</li>
+                    <li><span class="rule-num">4.</span> يمنع الخروج أثناء السيناريو (Combat Log) 🚫</li>
+                    <li><span class="rule-num">5.</span> يمنع استخدام معلومات خارجية (Meta Gaming) 🌍</li>
+                </ul>
+            </div>
+            
+            <p style="font-size: 12px; color: #555; margin-top: 20px;">انتظروا نسخة الأجهزة الضعيفة قريباً! ✨📉</p>
+        </div>
+    </div>
+
+    <script>
+        // كود لإخفاء التحميل وإظهار الموقع بعد 3 ثواني
+        setTimeout(function() {
+            document.getElementById('loading-screen').style.opacity = '0';
+            document.getElementById('loading-screen').style.visibility = 'hidden';
+            
+            var main = document.getElementById('main-content');
+            main.style.display = 'block';
+        }, 3500); // 3.5 ثواني
+    </script>
+
 </body>
-</html>
+    </html>
+                    
