@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>West City - Server</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .header {
+            padding: 50px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('خلفية-اللعبة.jpg');
+            background-size: cover;
+        }
+        .btn {
+            background-color: #ff4500;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>مرحباً بكم في سيرفر West City 🏙️</h1>
+        <p>أفضل تجربة لعب SAMP في الجزائر</p>
+        <br>
+        <a href="رابط-ديسكورد" class="btn">انضم إلينا على ديسكورد</a>
+    </div>
+</body>
+</html>
