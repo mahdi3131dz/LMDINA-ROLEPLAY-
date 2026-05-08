@@ -2,151 +2,35 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New City Roleplay - Dev Zerox</title>
+    <title>West City - Server</title>
     <style>
-        :root {
-            --main-orange: #ff6600;
-            --dark-bg: #0a0a0a;
-            --card-bg: rgba(20, 20, 20, 0.95);
-        }
-
-        body, html {
-            margin: 0; padding: 0; height: 100%;
-            background-color: var(--dark-bg);
-            font-family: 'Cairo', sans-serif;
+        body {
+            background-color: #1a1a1a;
             color: white;
-            overflow-x: hidden;
-        }
-
-        /* --- واجهة التحميل (Loading Screen) --- */
-        #loading-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--dark-bg);
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            z-index: 9999;
-            transition: opacity 1s ease, visibility 1s;
-        }
-
-        .loader-logo {
-            max-width: 220px;
-            filter: drop-shadow(0 0 15px var(--main-orange));
-            animation: pulse 2s infinite;
-        }
-
-        .progress-bar {
-            width: 250px; height: 5px;
-            background: rgba(255,255,255,0.1);
-            margin-top: 30px; border-radius: 10px; overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%; width: 0%;
-            background: var(--main-orange);
-            animation: loadProgress 3s forwards;
-        }
-
-        /* --- المحتوى الرئيسي (Main Content) --- */
-        #main-content {
-            opacity: 0;
-            display: none;
-            padding: 20px;
-            animation: fadeIn 1.5s forwards;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 40px auto;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 102, 0, 0.3);
+            font-family: Arial, sans-serif;
             text-align: center;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
-
-        .main-logo { width: 120px; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--main-orange)); }
-
-        h1 { color: var(--main-orange); margin: 10px 0; font-size: 24px; }
-
+        .header {
+            padding: 50px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('خلفية-اللعبة.jpg');
+            background-size: cover;
+        }
         .btn {
-            display: block; padding: 15px; margin: 12px 0;
-            background: linear-gradient(45deg, var(--main-orange), #ff9900);
-            color: white; text-decoration: none; font-weight: bold;
-            border-radius: 12px; transition: 0.3s;
+            background-color: #ff4500;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
         }
-
-        .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
-
-        .rules-section {
-            background: rgba(0,0,0,0.3);
-            padding: 20px; border-radius: 15px;
-            text-align: right; margin-top: 30px;
-            border-right: 4px solid var(--main-orange);
-        }
-
-        .rules-section h3 { color: var(--main-orange); text-align: center; margin-top: 0; }
-        
-        ul { list-style: none; padding: 0; }
-        li { margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
-        .rule-num { color: var(--main-orange); font-weight: bold; margin-left: 5px; }
-
-        /* --- الحركات (Animations) --- */
-        @keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
-
-    <div id="loading-screen">
-        <img src="https://images2.imgbox.com/4a/ff/uYoL3eOb_o.png" class="loader-logo" alt="Logo">
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-        <p style="color: #666; margin-top: 15px;">New City Roleplay is Loading...</p>
+    <div class="header">
+        <h1>مرحباً بكم في سيرفر West City 🏙️</h1>
+        <p>أفضل تجربة لعب SAMP في الجزائر</p>
+        <br>
+        <a href="رابط-ديسكورد" class="btn">انضم إلينا على ديسكورد</a>
     </div>
-
-    <div id="main-content">
-        <div class="container">
-            <img src="https://images2.imgbox.com/4a/ff/uYoL3eOb_o.png" class="main-logo" alt="Logo">
-            <h1>NEW CITY ROLEPLAY 🏙️</h1>
-            <p style="color: #aaa;">Developed by <b>Dev Zerox</b> 💻</p>
-
-            <div class="links">
-                <a href="https://discord.gg/aDXmY3BpGz" class="btn" target="_blank">انضم لسيرفر الديسكورد 💬</a>
-                <a href="https://mega.nz/file/Tm5WSLbQ#lIkfb3InZNCuUuOKiLGKKCs1z7MB-Ztr1S8ad9S6ilM" class="btn" target="_blank">تحميل Mod PC 🖥️</a>
-                <a href="https://www.mediafire.com/file/cgeu59no55vvax6/MOD+DZ+AIR+CITY+BY+ZA3IIM.zip/file" class="btn" target="_blank">تحميل Mod Mobile 📱</a>
-            </div>
-
-            <div class="rules-section">
-                <h3>📜 قوانين السيرفر</h3>
-                <ul>
-                    <li><span class="rule-num">1.</span> يمنع القتل العشوائي (RDM) 🔫</li>
-                    <li><span class="rule-num">2.</span> يمنع دهس اللاعبين (VDM) 🚗</li>
-                    <li><span class="rule-num">3.</span> التزم بتمثيل الدور (Fail RP) 🎭</li>
-                    <li><span class="rule-num">4.</span> يمنع الخروج أثناء السيناريو (Combat Log) 🚫</li>
-                    <li><span class="rule-num">5.</span> يمنع استخدام معلومات خارجية (Meta Gaming) 🌍</li>
-                </ul>
-            </div>
-            
-            <p style="font-size: 12px; color: #555; margin-top: 20px;">انتظروا نسخة الأجهزة الضعيفة قريباً! ✨📉</p>
-        </div>
-    </div>
-
-    <script>
-        // كود لإخفاء التحميل وإظهار الموقع بعد 3 ثواني
-        setTimeout(function() {
-            document.getElementById('loading-screen').style.opacity = '0';
-            document.getElementById('loading-screen').style.visibility = 'hidden';
-            
-            var main = document.getElementById('main-content');
-            main.style.display = 'block';
-        }, 3500); // 3.5 ثواني
-    </script>
-
 </body>
-    </html>
-                
+</html>
